@@ -1,6 +1,6 @@
 # See https://github.com/gitconsensus/GitConsensusCLI for more information about this file.
 
-version: 3
+version: 4
 
 # Don't count any vote from a user who votes for multiple options
 prevent_doubles: true
@@ -18,7 +18,7 @@ pull_requests:
   threshold: 0.51
 
   # Number of hours after last action (commit or opening the pull request) before issue can be merged
-  merge_delay: 12
+  merge_delay: 1
 
   # Number of votes at which the merge_delay gets ignored, assuming no negative votes.
   delay_override: 6
@@ -39,4 +39,4 @@ pull_requests:
   contributors_only: false
 
   # Don't put any restrictions on who can vote.
-  collaborators_only: false
+  collaborators_only: true
