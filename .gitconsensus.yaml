@@ -1,6 +1,6 @@
 # See https://github.com/gitconsensus/GitConsensusCLI for more information about this file.
 
-version: 4
+version: 5
 
 # Don't count any vote from a user who votes for multiple options
 prevent_doubles: true
@@ -21,7 +21,7 @@ pull_requests:
   merge_delay: 1
 
   # Number of votes at which the merge_delay gets ignored, assuming no negative votes.
-  delay_override: 6
+  delay_override: 2
 
   # Close pull requests that don't pass after seven days without any activity (new commits).
   timeout: 168
