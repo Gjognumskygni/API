@@ -39,4 +39,4 @@ pull_requests:
   contributors_only: false
 
   # Don't put any restrictions on who can vote.
-  collaborators_only: true
+  collaborators_only: false
