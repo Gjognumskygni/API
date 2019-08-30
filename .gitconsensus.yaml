@@ -1,6 +1,6 @@
 # See https://github.com/gitconsensus/GitConsensusCLI for more information about this file.
 
-version: 5
+version: 3
 
 # Don't count any vote from a user who votes for multiple options
 prevent_doubles: true
@@ -12,19 +12,19 @@ extra_labels: false
 pull_requests:
 
   # At least three people should sign off on any pull request.
-  quorum: 3
+  quorum: 2
 
   # Required percentage of "yes" votes (ignoring abstentions). It's a good idea to give "no" votes more power.
   threshold: 0.51
 
   # Number of hours after last action (commit or opening the pull request) before issue can be merged
-  merge_delay: 1
+  merge_delay: 0
 
   # Number of votes at which the merge_delay gets ignored, assuming no negative votes.
   delay_override: 2
 
   # Close pull requests that don't pass after seven days without any activity (new commits).
-  timeout: 168
+  timeout: 7
 
   # Do not allow changes to the license.
   license_lock: true
