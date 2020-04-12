@@ -14,19 +14,19 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FetchVotesController : ControllerBase
+    public class LogtingController : ControllerBase
     {
         private readonly ILogtingParserService logtingParserService;
         private readonly IHttpClientFactory clientFactory;
 
-        public FetchVotesController(IHttpClientFactory clientFactory, ILogtingParserService logtingParserService)
+        public LogtingController(IHttpClientFactory clientFactory, ILogtingParserService logtingParserService)
         {
             this.clientFactory = clientFactory;
             this.logtingParserService = logtingParserService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAsync([FromQuery(Name = "votePage")] string url)
+        [HttpGet("votes")]
+        public async Task<IActionResult> GetVotesAsync([FromQuery(Name = "url")] string url)
         {
             HttpClient httpClient = clientFactory.CreateClient();
             var response = await httpClient.GetAsync(new Uri(url));
