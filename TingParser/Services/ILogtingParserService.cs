@@ -6,6 +6,6 @@ namespace TingParser.Services
 {
     public interface ILogtingParserService
     {
-        public VoteResultViewModel ParseHtmlContent(string content);
+        public VoteResultViewModel ParseVote(string content);
     }
 }

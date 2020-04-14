@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HtmlAgilityPack;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -9,7 +10,9 @@ namespace TingParser.Services
 {
     public class LogtingParserService : ILogtingParserService
     {
-        public VoteResultViewModel ParseHtmlContent(string content)
+        private readonly Uri baseUrl = new Uri("https://logting.fo/");
+
+        public VoteResultViewModel ParseVote(string content)
         {
             var removedHTML = StripHTML(content);
 
@@ -41,7 +44,7 @@ namespace TingParser.Services
             voteResult.Reading = int.Parse(Regex.Match(split[2], @"\d+").Value).ToString();
 
 
-            DateTime.TryParseExact(finalLines[1], "dd-MM-yyyy hh:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime resultDate);
+            DateTime.TryParseExact(finalLines[1], "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime resultDate);
             voteResult.VoteDate = resultDate;
 
             voteResult.Present = int.Parse(Regex.Match(finalLines.FirstOrDefault(x => x.Contains("Present")), @"\d+").Value);
@@ -77,6 +80,30 @@ namespace TingParser.Services
             }
 
             return voteResult;
+        }
+
+        public IList<string> ParseOverviewForRowLinks(string content)
+        {
+            var decodedContent = System.Web.HttpUtility.HtmlDecode(content);
+
+            var doc = new HtmlDocument();
+            doc.LoadHtml(content);
+
+            var element = doc.GetElementbyId("row");
+            var tbody = element.SelectSingleNode("//tbody");
+
+            var nodes = tbody.Elements("tr");
+
+            var list = new List<string>();
+
+            foreach (var item in nodes)
+            {
+                var link = item.Element("td").Element("a").GetAttributeValue("href", "");
+                var uri = new Uri(baseUrl, link);
+                list.Add(uri.AbsoluteUri);
+            }
+
+            return list;
         }
 
         private string StripHTML(string input)

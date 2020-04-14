@@ -1,0 +1,36 @@
+﻿<HTML><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><BODY>
+<h3>Løgtingssetan 2019&nbsp;&nbsp;Mál: 135&nbsp;&nbsp;Viðgerð: 2</h3><iframe name=LeHiddenFrame frameborder=0 border=0 height=0 width=0></iframe>
+<p>06-04-2020 21:20</p>
+<p><b>Soleiðis broytt&nbsp;-&nbsp;Voting results</b></p>
+<p><table border=0 width=400>
+<tr><TD>&nbsp;</TD><td><b>Present</b></td><td><b>19</b></td></tr>
+<tr><TD>&nbsp;</TD><td><b>Total JA</b></td><td><b>19</b></td></tr>
+<tr><TD>&nbsp;</TD><td><b>Total NEI</b></td><td><b>0</b></td></tr>
+<tr><TD>&nbsp;</TD><td><b>Total BLANK</b></td><td><b>0</b></td></tr>
+<TR><TD colspan=3>&nbsp;</TD></TR>
+<TR><TD colspan=3>JA: 19</TD></TR>
+<TR><TD>&nbsp;</TD><TD colspan=2>1. Jógvan á Lakjuni</TR>
+<TR><TD>&nbsp;</TD><TD colspan=2>2. Uni Rasmussen</TR>
+<TR><TD>&nbsp;</TD><TD colspan=2>3. Jákup Mikkelsen</TR>
+<TR><TD>&nbsp;</TD><TD colspan=2>4. Beinir Johannesen</TR>
+<TR><TD>&nbsp;</TD><TD colspan=2>5. Christian Andreasen</TR>
+<TR><TD>&nbsp;</TD><TD colspan=2>6. Steffan Klein Poulsen</TR>
+<TR><TD>&nbsp;</TD><TD colspan=2>7. Bjarni Hammer</TR>
+<TR><TD>&nbsp;</TD><TD colspan=2>8. Jóhannis Joensen</TR>
+<TR><TD>&nbsp;</TD><TD colspan=2>9. Ingilín Didriksen Strøm</TR>
+<TR><TD>&nbsp;</TD><TD colspan=2>10. Aksel V. Johannesen</TR>
+<TR><TD>&nbsp;</TD><TD colspan=2>11. Ruth Vang</TR>
+<TR><TD>&nbsp;</TD><TD colspan=2>12. Edva Jacobsen</TR>
+<TR><TD>&nbsp;</TD><TD colspan=2>13. Johan Dahl</TR>
+<TR><TD>&nbsp;</TD><TD colspan=2>14. Rósa Samuelsen</TR>
+<TR><TD>&nbsp;</TD><TD colspan=2>15. Magnus Rasmussen</TR>
+<TR><TD>&nbsp;</TD><TD colspan=2>16. Kristina Háfoss</TR>
+<TR><TD>&nbsp;</TD><TD colspan=2>17. Bjørt Samuelsen</TR>
+<TR><TD>&nbsp;</TD><TD colspan=2>18. Høgni Hoydal</TR>
+<TR><TD>&nbsp;</TD><TD colspan=2>19. Sirið Stenberg</TR>
+<TR><TD colspan=3>&nbsp;</TD></TR>
+<TR><TD colspan=3>NEI: 0</TD></TR>
+<TR><TD colspan=3>&nbsp;</TD></TR>
+<TR><TD colspan=3>BLANK: 0</TD></TR>
+<TR><TD colspan=3>&nbsp;</TD></TR>
+</TBODY></TABLE></P></BODY></HTML>
