@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TingParser", "TingParser\Ti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewModel", "ViewModel\ViewModel.csproj", "{EF952719-23A6-4E20-86F1-E47BEA6CEFF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TingParserTests", "TingParserTests\TingParserTests.csproj", "{F8F3D3BA-0BDA-4589-A3C8-BCAC3ED4C8EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TingParserTests", "TingParserTests\TingParserTests.csproj", "{F8F3D3BA-0BDA-4589-A3C8-BCAC3ED4C8EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crawler", "Crawler\Crawler.csproj", "{BD637968-1970-41B5-A1BE-57D7BB8535F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{F8F3D3BA-0BDA-4589-A3C8-BCAC3ED4C8EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8F3D3BA-0BDA-4589-A3C8-BCAC3ED4C8EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8F3D3BA-0BDA-4589-A3C8-BCAC3ED4C8EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD637968-1970-41B5-A1BE-57D7BB8535F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD637968-1970-41B5-A1BE-57D7BB8535F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD637968-1970-41B5-A1BE-57D7BB8535F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD637968-1970-41B5-A1BE-57D7BB8535F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

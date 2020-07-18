@@ -20,5 +20,7 @@ namespace DAL.Model
         public DbSet<Proposer> Proposers { get; set; }
 
         public DbSet<Vote> Votes { get; set; }
+
+        public DbSet<LogtingVoterInstance> LogtingVoterInstances { get; set; }
     }
 }
