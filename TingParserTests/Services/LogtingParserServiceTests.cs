@@ -105,5 +105,59 @@ namespace TingParser.Services.Tests
             Assert.AreEqual(urls.Count, parsedUrls.Count);
             urls.ForEach(x => Assert.IsTrue(parsedUrls.Contains(x)));
         }
+
+
+        [TestMethod()]
+        public void ParseGetPaginationCountFromAdvancedSearch()
+        {
+            var service = new LogtingParserService();
+
+            var testData = GetFileContent("AdvancedSearch1.txt");
+            Assert.IsNotNull(testData);
+
+            var paginationCount = service.ParseGetPaginationCountFromAdvancedSearch(testData);
+            Assert.AreEqual(3, paginationCount);
+        }
+
+        [TestMethod()]
+        public void ParseGetPaginationUrlFromAdvancedSearch()
+        {
+            var service = new LogtingParserService();
+
+            var testData = GetFileContent("AdvancedSearch1.txt");
+            Assert.IsNotNull(testData);
+
+            var urls = new List<string> {
+                "https://logting.fo/search/advancedSearch.gebs?d-16544-p=1&year=2013&subject=&parliamentMember=&menuChanged=%23parameters.menuChanged&lawNo=&committee.id=&caseType=-1",
+                "https://logting.fo/search/advancedSearch.gebs?d-16544-p=2&year=2013&subject=&parliamentMember=&menuChanged=%23parameters.menuChanged&lawNo=&committee.id=&caseType=-1",
+                "https://logting.fo/search/advancedSearch.gebs?d-16544-p=3&year=2013&subject=&parliamentMember=&menuChanged=%23parameters.menuChanged&lawNo=&committee.id=&caseType=-1",
+            };
+
+            var paginationUrls = service.ParseGetPaginationUrlFromAdvancedSearch(testData);
+            Assert.AreEqual(urls.Count, paginationUrls.Count);
+        }
+
+        [TestMethod()]
+        public void ParseYearTest1()
+        {
+            var service = new LogtingParserService();
+
+            var testData = GetFileContent("AdvancedSearch1.txt");
+            Assert.IsNotNull(testData);
+
+            //var urls = new List<string> {
+            //    "https://logting.fo/files/casestate/28163/135.19%20Alit%20i%20ll.%20um%20studulsskipan%20til%20fyritokur%20til%20fastar%20utreidslur%20orsakad%20av%20COVID-19.pdf",
+            //    "https://logting.fo/files/casestate/28163/135.19%20Skjal%20A.pdf",
+            //    "https://logting.fo/files/casestate/28163/135.19%20Skjal%20B.pdf",
+            //    "https://logting.fo/files/casestate/28163/135.19%20Skjal%20C.pdf",
+            //    "https://logting.fo/files/casestate/28163/135.19%20Skjal%20D.pdf",
+            //    "https://logting.fo/files/casestate/28163/135.19%20Skjal%20E.pdf",
+            //};
+
+            //var parsedUrls = service.ParseOverviewForRowLinks(testData);
+            //Assert.IsNotNull(parsedUrls);
+            //Assert.AreEqual(urls.Count, parsedUrls.Count);
+            //urls.ForEach(x => Assert.IsTrue(parsedUrls.Contains(x)));
+        }
     }
 }

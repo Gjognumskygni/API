@@ -106,6 +106,36 @@ namespace TingParser.Services
             return list;
         }
 
+        public int ParseGetPaginationCountFromAdvancedSearch(string content)
+        {
+            var decodedContent = System.Web.HttpUtility.HtmlDecode(content);
+
+            var doc = new HtmlDocument();
+            doc.LoadHtml(content);
+            var node = doc.DocumentNode.SelectNodes("//span[@class='total']").First();
+
+            var resultString = Regex.Match(node.InnerText.Trim(), @"\d+").Value;
+            var itemCount = int.Parse(resultString);
+
+            var paginationCount = (int)Math.Ceiling((decimal)itemCount / 200);
+
+            return paginationCount;
+        }
+
+        public IList<string> ParseGetPaginationUrlFromAdvancedSearch(string content)
+        {
+            var paginationCount = this.ParseGetPaginationCountFromAdvancedSearch(content);
+
+            var paginationUrls = new List<string>();
+
+            for (int i = 1; i <= paginationCount; i++)
+            {
+                paginationUrls.Add($"https://logting.fo/search/advancedSearch.gebs?d-16544-p={i}&year=2013&subject=&parliamentMember=&menuChanged=%23parameters.menuChanged&lawNo=&committee.id=&caseType=-1");
+            }
+
+            return paginationUrls;
+        }
+
         private string StripHTML(string input)
         {
             return Regex.Replace(input, "<.*?>", String.Empty);
