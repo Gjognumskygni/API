@@ -4,12 +4,12 @@
     {
         Logaruppskot = 0,
         Rikistilmali = 1,
-        UppskotTilSamtyktar = 2,
+        Uppskot_Til_Samtyktar = 2,
         Figgjarlogaruppskot = 3,
-        SkrivligarFyrispurningar = 4,
+        Skrivligar_Fyrispurningar = 4,
         Spurningar52 = 5,
         Muntligar_Fyrispurningar = 6,
-        Frágreiðing = 7,
+        Fragreiðing = 7,
         Nevndarmál = 8,
     }
 }

@@ -214,7 +214,7 @@ namespace TingParser.Services.Tests
             Assert.IsNotNull(testData);
 
             var caseType = service.ParseCaseType(testData);
-            Assert.AreEqual(CaseType.Frágreiðing, caseType);
+            Assert.AreEqual(CaseType.Fragreiðing, caseType);
         }
 
         [TestMethod()]
@@ -262,7 +262,7 @@ namespace TingParser.Services.Tests
             Assert.IsNotNull(testData);
 
             var caseType = service.ParseCaseType(testData);
-            Assert.AreEqual(CaseType.SkrivligarFyrispurningar, caseType);
+            Assert.AreEqual(CaseType.Skrivligar_Fyrispurningar, caseType);
         }
 
         [TestMethod()]
@@ -286,7 +286,7 @@ namespace TingParser.Services.Tests
             Assert.IsNotNull(testData);
 
             var caseType = service.ParseCaseType(testData);
-            Assert.AreEqual(CaseType.UppskotTilSamtyktar, caseType);
+            Assert.AreEqual(CaseType.Uppskot_Til_Samtyktar, caseType);
         }
     }
 }

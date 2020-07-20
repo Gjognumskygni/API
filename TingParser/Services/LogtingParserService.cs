@@ -178,12 +178,12 @@ namespace TingParser.Services
             {
                 "Lógaruppskot" => CaseType.Logaruppskot,
                 "Ríkislógartilmæli" => CaseType.Rikistilmali,
-                "Uppskot til samtyktar" => CaseType.UppskotTilSamtyktar,
+                "Uppskot til samtyktar" => CaseType.Uppskot_Til_Samtyktar,
                 "Fíggjarlógaruppskot" => CaseType.Figgjarlogaruppskot,
-                "Skrivligur fyrispurningur" => CaseType.SkrivligarFyrispurningar,
+                "Skrivligur fyrispurningur" => CaseType.Skrivligar_Fyrispurningar,
                 "Spurningar § 52 a" => CaseType.Spurningar52,
                 "Muntligur fyrispurningur" => CaseType.Muntligar_Fyrispurningar,
-                "Frágreiðing" => CaseType.Frágreiðing,
+                "Frágreiðing" => CaseType.Fragreiðing,
                 "Nevndarmál" => CaseType.Nevndarmál,
                 _ => throw new NotImplementedException(),
             };
