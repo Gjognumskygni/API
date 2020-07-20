@@ -12,5 +12,9 @@ namespace TingParser.Services
         int ParseGetPaginationCountFromAdvancedSearch(string content);
 
         IList<string> ParseGetPaginationUrlFromAdvancedSearch(string content);
+
+        IList<(CaseType, string)> ParseGetCaseUrlsFromAdvancedSearch(string content);
+
+        CaseType ParseCaseType(string content);
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
 namespace TingParser.Services.Tests
 {
@@ -15,8 +16,7 @@ namespace TingParser.Services.Tests
             _filePath = Directory.GetParent(Directory.GetParent(_filePath).FullName).FullName;
             _filePath += $@"\TestData\{fileName}";
             TextReader tr = new StreamReader(_filePath);
-            string content = tr.ReadToEnd();
-            return content;
+            return tr.ReadToEnd();
         }
 
         [TestMethod()]
@@ -135,29 +135,158 @@ namespace TingParser.Services.Tests
 
             var paginationUrls = service.ParseGetPaginationUrlFromAdvancedSearch(testData);
             Assert.AreEqual(urls.Count, paginationUrls.Count);
+
+            foreach (var item in urls)
+            {
+                Assert.IsTrue(paginationUrls.Contains(item));
+            }
         }
 
         [TestMethod()]
-        public void ParseYearTest1()
+        public void ParseAdvancedSearchTest1()
         {
             var service = new LogtingParserService();
 
             var testData = GetFileContent("AdvancedSearch1.txt");
             Assert.IsNotNull(testData);
 
-            //var urls = new List<string> {
-            //    "https://logting.fo/files/casestate/28163/135.19%20Alit%20i%20ll.%20um%20studulsskipan%20til%20fyritokur%20til%20fastar%20utreidslur%20orsakad%20av%20COVID-19.pdf",
-            //    "https://logting.fo/files/casestate/28163/135.19%20Skjal%20A.pdf",
-            //    "https://logting.fo/files/casestate/28163/135.19%20Skjal%20B.pdf",
-            //    "https://logting.fo/files/casestate/28163/135.19%20Skjal%20C.pdf",
-            //    "https://logting.fo/files/casestate/28163/135.19%20Skjal%20D.pdf",
-            //    "https://logting.fo/files/casestate/28163/135.19%20Skjal%20E.pdf",
-            //};
+            var parsedUrls = service.ParseGetCaseUrlsFromAdvancedSearch(testData);
 
-            //var parsedUrls = service.ParseOverviewForRowLinks(testData);
-            //Assert.IsNotNull(parsedUrls);
-            //Assert.AreEqual(urls.Count, parsedUrls.Count);
-            //urls.ForEach(x => Assert.IsTrue(parsedUrls.Contains(x)));
+            Assert.IsTrue(parsedUrls.Count == 200);
+        }
+
+        [TestMethod()]
+        public void ParseAdvancedSearchTest2()
+        {
+            var service = new LogtingParserService();
+
+            var testData = GetFileContent("AdvancedSearch2.txt");
+            Assert.IsNotNull(testData);
+
+            var parsedUrls = service.ParseGetCaseUrlsFromAdvancedSearch(testData);
+
+            Assert.IsTrue(parsedUrls.Count == 200);
+        }
+
+        [TestMethod()]
+        public void ParseAdvancedSearchTest3()
+        {
+            var service = new LogtingParserService();
+
+            var testData = GetFileContent("AdvancedSearch3.txt");
+            Assert.IsNotNull(testData);
+
+            var parsedUrls = service.ParseGetCaseUrlsFromAdvancedSearch(testData);
+
+            Assert.IsTrue(parsedUrls.Count == 12);
+        }
+
+        [TestMethod()]
+        public void ParseCaseType1()
+        {
+            var service = new LogtingParserService();
+
+            var testData = GetFileContent("CaseType1.txt");
+            Assert.IsNotNull(testData);
+
+            var caseType = service.ParseCaseType(testData);
+            Assert.AreEqual(CaseType.Nevndarmál, caseType);
+        }
+
+        [TestMethod()]
+        public void ParseCaseType2()
+        {
+            var service = new LogtingParserService();
+
+            var testData = GetFileContent("CaseType2.txt");
+            Assert.IsNotNull(testData);
+
+            var caseType = service.ParseCaseType(testData);
+            Assert.AreEqual(CaseType.Figgjarlogaruppskot, caseType);
+        }
+
+        [TestMethod()]
+        public void ParseCaseType3()
+        {
+            var service = new LogtingParserService();
+
+            var testData = GetFileContent("CaseType3.txt");
+            Assert.IsNotNull(testData);
+
+            var caseType = service.ParseCaseType(testData);
+            Assert.AreEqual(CaseType.Frágreiðing, caseType);
+        }
+
+        [TestMethod()]
+        public void ParseCaseType4()
+        {
+            var service = new LogtingParserService();
+
+            var testData = GetFileContent("CaseType4.txt");
+            Assert.IsNotNull(testData);
+
+            var caseType = service.ParseCaseType(testData);
+            Assert.AreEqual(CaseType.Logaruppskot, caseType);
+        }
+
+        [TestMethod()]
+        public void ParseCaseType5()
+        {
+            var service = new LogtingParserService();
+
+            var testData = GetFileContent("CaseType5.txt");
+            Assert.IsNotNull(testData);
+
+            var caseType = service.ParseCaseType(testData);
+            Assert.AreEqual(CaseType.Muntligar_Fyrispurningar, caseType);
+        }
+
+        [TestMethod()]
+        public void ParseCaseType6()
+        {
+            var service = new LogtingParserService();
+
+            var testData = GetFileContent("CaseType6.txt");
+            Assert.IsNotNull(testData);
+
+            var caseType = service.ParseCaseType(testData);
+            Assert.AreEqual(CaseType.Rikistilmali, caseType);
+        }
+
+        [TestMethod()]
+        public void ParseCaseType7()
+        {
+            var service = new LogtingParserService();
+
+            var testData = GetFileContent("CaseType7.txt");
+            Assert.IsNotNull(testData);
+
+            var caseType = service.ParseCaseType(testData);
+            Assert.AreEqual(CaseType.SkrivligarFyrispurningar, caseType);
+        }
+
+        [TestMethod()]
+        public void ParseCaseType8()
+        {
+            var service = new LogtingParserService();
+
+            var testData = GetFileContent("CaseType8.txt");
+            Assert.IsNotNull(testData);
+
+            var caseType = service.ParseCaseType(testData);
+            Assert.AreEqual(CaseType.Spurningar52, caseType);
+        }
+
+        [TestMethod()]
+        public void ParseCaseType9()
+        {
+            var service = new LogtingParserService();
+
+            var testData = GetFileContent("CaseType9.txt");
+            Assert.IsNotNull(testData);
+
+            var caseType = service.ParseCaseType(testData);
+            Assert.AreEqual(CaseType.UppskotTilSamtyktar, caseType);
         }
     }
 }

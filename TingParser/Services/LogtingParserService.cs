@@ -117,9 +117,7 @@ namespace TingParser.Services
             var resultString = Regex.Match(node.InnerText.Trim(), @"\d+").Value;
             var itemCount = int.Parse(resultString);
 
-            var paginationCount = (int)Math.Ceiling((decimal)itemCount / 200);
-
-            return paginationCount;
+            return (int)Math.Ceiling((decimal)itemCount / 200);
         }
 
         public IList<string> ParseGetPaginationUrlFromAdvancedSearch(string content)
@@ -139,6 +137,56 @@ namespace TingParser.Services
         private string StripHTML(string input)
         {
             return Regex.Replace(input, "<.*?>", String.Empty);
+        }
+
+        public IList<(CaseType, string)> ParseGetCaseUrlsFromAdvancedSearch(string content)
+        {
+            var doc = new HtmlDocument();
+            doc.LoadHtml(content);
+
+            var element = doc.GetElementbyId("row");
+            var tbody = element.SelectSingleNode("//tbody");
+
+            var caseTypeNodes = tbody.SelectNodes("//table/tbody/tr/td[1]/text()[2]");
+            var linkNodes = tbody.SelectNodes("//table/tbody/tr/td[2]/a");
+
+            var links = new List<(CaseType, string)>();
+
+            for (int i = 0; i < caseTypeNodes.Count(); i++)
+            {
+                var text = caseTypeNodes[i].InnerText;
+                var link = linkNodes[i].GetAttributeValue("href", "");
+
+                if (Uri.TryCreate(baseUrl, link, out var result))
+                {
+                    links.Add((ParseCaseType(text), result.AbsoluteUri));
+                }
+                else
+                {
+                    links.Add((ParseCaseType(text), null));
+                }
+            }
+
+            return links;
+        }
+
+        public CaseType ParseCaseType(string content)
+        {
+            var text = Regex.Replace(content, @"\t|\n|\r", "").Trim();
+
+            return text switch
+            {
+                "Lógaruppskot" => CaseType.Logaruppskot,
+                "Ríkislógartilmæli" => CaseType.Rikistilmali,
+                "Uppskot til samtyktar" => CaseType.UppskotTilSamtyktar,
+                "Fíggjarlógaruppskot" => CaseType.Figgjarlogaruppskot,
+                "Skrivligur fyrispurningur" => CaseType.SkrivligarFyrispurningar,
+                "Spurningar § 52 a" => CaseType.Spurningar52,
+                "Muntligur fyrispurningur" => CaseType.Muntligar_Fyrispurningar,
+                "Frágreiðing" => CaseType.Frágreiðing,
+                "Nevndarmál" => CaseType.Nevndarmál,
+                _ => throw new NotImplementedException(),
+            };
         }
     }
 }
