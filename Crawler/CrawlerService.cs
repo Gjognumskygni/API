@@ -31,7 +31,6 @@ namespace Crawler
             {
                 var pageCount = await GetTotalPageCountForYear(year);
                 var casesList = await GetListOfCasesForYear(year, pageCount);
-                var usedCases = 
             }
 
             return;
