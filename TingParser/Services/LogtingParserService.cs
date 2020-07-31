@@ -188,5 +188,27 @@ namespace TingParser.Services
                 _ => throw new NotImplementedException(),
             };
         }
+
+        public IList<string> ParseCaseNormalUrls(string content)
+        {
+            var doc = new HtmlDocument();
+            doc.LoadHtml(content);
+
+            var section = doc.DocumentNode.SelectNodes("/html/body/div/div/div/div[2]/div[3]").First();
+
+            var results = new List<string>();
+
+            foreach (var a in section.Descendants("a"))
+            {
+                var link = a.GetAttributeValue("href", "");
+
+                if (Uri.TryCreate(baseUrl, link, out var result))
+                {
+                    results.Add(result.AbsoluteUri);
+                }
+            }
+
+            return results;
+        }
     }
 }

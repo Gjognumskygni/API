@@ -31,9 +31,54 @@ namespace Crawler
             {
                 var pageCount = await GetTotalPageCountForYear(year);
                 var casesList = await GetListOfCasesForYear(year, pageCount);
+
+                foreach (var (typeType, url) in casesList)
+                {
+                    var caseUrls = await GetDocumentsForCaseNormal(url);
+
+                    foreach (var item in caseUrls)
+                    {
+                        var overviewUrls = await NewMethod(item);
+
+                        foreach (var hearingContent in overviewUrls)
+                        {
+                            var hearingsResults = logtingParserService.ParseVote(hearingContent);
+                        }
+                    }
+                }
+
             }
 
             return;
+        }
+
+        private async Task<IList<string>> NewMethod(string item)
+        {
+            var responseMessage = await client.GetAsync(item);
+
+            if (!responseMessage.IsSuccessStatusCode)
+            {
+                throw new HttpRequestException(responseMessage.ReasonPhrase);
+            }
+
+            var content = await responseMessage.Content.ReadAsStringAsync();
+
+            var overviewUrls = logtingParserService.ParseOverviewForRowLinks(content);
+            return overviewUrls;
+        }
+
+        private async Task<IList<string>> GetDocumentsForCaseNormal(string url)
+        {
+            var responseMessage = await client.GetAsync(url);
+
+            if (!responseMessage.IsSuccessStatusCode)
+            {
+                throw new HttpRequestException(responseMessage.ReasonPhrase);
+            }
+
+            var content = await responseMessage.Content.ReadAsStringAsync();
+
+            return logtingParserService.ParseCaseNormalUrls(content);
         }
 
         private async Task<int> GetTotalPageCountForYear(int year)

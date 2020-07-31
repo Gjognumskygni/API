@@ -16,5 +16,9 @@ namespace TingParser.Services
         IList<(CaseType, string)> ParseGetCaseUrlsFromAdvancedSearch(string content);
 
         CaseType ParseCaseType(string content);
+
+        IList<string> ParseCaseNormalUrls(string content);
+
+        IList<string> ParseOverviewForRowLinks(string content);
     }
 }

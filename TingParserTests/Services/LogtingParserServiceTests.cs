@@ -186,7 +186,7 @@ namespace TingParser.Services.Tests
         {
             var service = new LogtingParserService();
 
-            var testData = GetFileContent("CaseType1.txt");
+            var testData = GetFileContent("CaseTypes/CaseType1.txt");
             Assert.IsNotNull(testData);
 
             var caseType = service.ParseCaseType(testData);
@@ -198,7 +198,7 @@ namespace TingParser.Services.Tests
         {
             var service = new LogtingParserService();
 
-            var testData = GetFileContent("CaseType2.txt");
+            var testData = GetFileContent("CaseTypes/CaseType2.txt");
             Assert.IsNotNull(testData);
 
             var caseType = service.ParseCaseType(testData);
@@ -210,7 +210,7 @@ namespace TingParser.Services.Tests
         {
             var service = new LogtingParserService();
 
-            var testData = GetFileContent("CaseType3.txt");
+            var testData = GetFileContent("CaseTypes/CaseType3.txt");
             Assert.IsNotNull(testData);
 
             var caseType = service.ParseCaseType(testData);
@@ -222,7 +222,7 @@ namespace TingParser.Services.Tests
         {
             var service = new LogtingParserService();
 
-            var testData = GetFileContent("CaseType4.txt");
+            var testData = GetFileContent("CaseTypes/CaseType4.txt");
             Assert.IsNotNull(testData);
 
             var caseType = service.ParseCaseType(testData);
@@ -234,7 +234,7 @@ namespace TingParser.Services.Tests
         {
             var service = new LogtingParserService();
 
-            var testData = GetFileContent("CaseType5.txt");
+            var testData = GetFileContent("CaseTypes/CaseType5.txt");
             Assert.IsNotNull(testData);
 
             var caseType = service.ParseCaseType(testData);
@@ -246,7 +246,7 @@ namespace TingParser.Services.Tests
         {
             var service = new LogtingParserService();
 
-            var testData = GetFileContent("CaseType6.txt");
+            var testData = GetFileContent("CaseTypes/CaseType6.txt");
             Assert.IsNotNull(testData);
 
             var caseType = service.ParseCaseType(testData);
@@ -258,7 +258,7 @@ namespace TingParser.Services.Tests
         {
             var service = new LogtingParserService();
 
-            var testData = GetFileContent("CaseType7.txt");
+            var testData = GetFileContent("CaseTypes/CaseType7.txt");
             Assert.IsNotNull(testData);
 
             var caseType = service.ParseCaseType(testData);
@@ -270,7 +270,7 @@ namespace TingParser.Services.Tests
         {
             var service = new LogtingParserService();
 
-            var testData = GetFileContent("CaseType8.txt");
+            var testData = GetFileContent("CaseTypes/CaseType8.txt");
             Assert.IsNotNull(testData);
 
             var caseType = service.ParseCaseType(testData);
@@ -282,11 +282,91 @@ namespace TingParser.Services.Tests
         {
             var service = new LogtingParserService();
 
-            var testData = GetFileContent("CaseType9.txt");
+            var testData = GetFileContent("CaseTypes/CaseType9.txt");
             Assert.IsNotNull(testData);
 
             var caseType = service.ParseCaseType(testData);
             Assert.AreEqual(CaseType.Uppskot_Til_Samtyktar, caseType);
+        }
+
+        [TestMethod()]
+        public void ParseHearings1()
+        {
+            var service = new LogtingParserService();
+
+            var testData = GetFileContent("CaseNormal1.txt");
+            Assert.IsNotNull(testData);
+
+            var urls = new List<string> {
+                "https://logting.fo/casenormal/viewState.gebs?caseState.id=13633&menuChanged=16",
+                "https://logting.fo/chamberreport/list.gebs?caseNormal.id=2272&back=true&menuChanged=16",
+                "https://logting.fo/casenormal/viewState.gebs?caseState.id=13634&menuChanged=16",
+                "https://logting.fo/casenormal/viewState.gebs?caseState.id=13635&menuChanged=16",
+                "https://logting.fo/casenormal/viewState.gebs?caseState.id=13636&menuChanged=16",
+                "https://logting.fo/casenormal/viewCommitteeState.gebs?caseState.id=13637&menuChanged=16",
+            };
+
+            var parsedUrls = service.ParseCaseNormalUrls(testData);
+            Assert.IsNotNull(parsedUrls);
+            Assert.AreEqual(urls.Count, parsedUrls.Count);
+            urls.ForEach(x => Assert.IsTrue(parsedUrls.Contains(x)));
+        }
+
+        [TestMethod()]
+        public void ParseHearings2()
+        {
+            var service = new LogtingParserService();
+
+            var testData = GetFileContent("CaseNormal2.txt");
+            Assert.IsNotNull(testData);
+
+            var urls = new List<string> {
+                "https://logting.fo/casenormal/viewState.gebs?caseState.id=13633&menuChanged=16",
+                "https://logting.fo/chamberreport/list.gebs?caseNormal.id=2272&back=true&menuChanged=16",
+                "https://logting.fo/casenormal/viewState.gebs?caseState.id=13634&menuChanged=16",
+                "https://logting.fo/casenormal/viewState.gebs?caseState.id=13635&menuChanged=16",
+                "https://logting.fo/casenormal/viewState.gebs?caseState.id=13636&menuChanged=16",
+                "https://logting.fo/casenormal/viewCommitteeState.gebs?caseState.id=13637&menuChanged=16",
+            };
+
+            var parsedUrls = service.ParseCaseNormalUrls(testData);
+            Assert.IsNotNull(parsedUrls);
+            Assert.AreEqual(urls.Count, parsedUrls.Count);
+            urls.ForEach(x => Assert.IsTrue(parsedUrls.Contains(x)));
+        }
+
+        [TestMethod()]
+        public void ParseHearings3()
+        {
+            var service = new LogtingParserService();
+
+            var testData = GetFileContent("CaseNormal3.txt");
+            Assert.IsNotNull(testData);
+
+            var urls = new List<string> {
+                "https://logting.fo/casequest/listDoc.gebs?caseQuest.id=101&menuChanged=19",
+            };
+
+            var parsedUrls = service.ParseCaseNormalUrls(testData);
+            Assert.IsNotNull(parsedUrls);
+            Assert.AreEqual(urls.Count, parsedUrls.Count);
+            urls.ForEach(x => Assert.IsTrue(parsedUrls.Contains(x)));
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentNullException), "Could not find any casenormal links.")]
+        public void ParseHearings4()
+        {
+            var service = new LogtingParserService();
+
+            var testData = GetFileContent("CaseNormal4.txt");
+            Assert.IsNotNull(testData);
+
+            var urls = new List<string>();
+
+            var parsedUrls = service.ParseCaseNormalUrls(testData);
+            Assert.IsNotNull(parsedUrls);
+            Assert.AreEqual(urls.Count, parsedUrls.Count);
         }
     }
 }
