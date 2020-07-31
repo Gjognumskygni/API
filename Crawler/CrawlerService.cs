@@ -29,8 +29,9 @@ namespace Crawler
 
             foreach (var year in years)
             {
-                var totalPageCount = await GetTotalPageCountForYear(year);
-                var casesList = await GetListOfCasesForYear(year, totalPageCount);
+                var pageCount = await GetTotalPageCountForYear(year);
+                var casesList = await GetListOfCasesForYear(year, pageCount);
+                var usedCases = 
             }
 
             return;
@@ -98,9 +99,7 @@ namespace Crawler
 
             var content = await responseMessage.Content.ReadAsStringAsync();
 
-            var list = logtingParserService.ParseGetCaseUrlsFromAdvancedSearch(content);
-
-            return list;
+            return logtingParserService.ParseGetCaseUrlsFromAdvancedSearch(content);
         }
 
         public IDictionary<CaseType, ICollection<string>> ToDictionary(IEnumerable<(CaseType, string)> list)
