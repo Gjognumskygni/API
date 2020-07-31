@@ -24,46 +24,58 @@ namespace Crawler
         {
             Console.WriteLine("Initiating Crawling logting.fo");
 
-            var years = new List<int>()
-                {
-                    2019
-                };//GetYears();
+            //var years = GetYears();
+            var years = new List<int>() { 2019 };
 
             foreach (var year in years)
             {
-                var responseMessage = await client.GetAsync($"https://logting.fo/search/advancedSearch.gebs?d-16544-p=1&year={year}&subject=&parliamentMember=&menuChanged=%23parameters.menuChanged&lawNo=&committee.id=&caseType=-1");
-
-                if (!responseMessage.IsSuccessStatusCode)
-                {
-                    Console.WriteLine($"StatusCode: {responseMessage.StatusCode}. Found no overview page for {year}!");
-                    continue;
-                }
-
-                var content = await responseMessage.Content.ReadAsStringAsync();
-
-                var totalPageCount = logtingParserService.ParseGetPaginationCountFromAdvancedSearch(content);
-
-                Console.WriteLine($"StatusCode: {responseMessage.StatusCode}. Overview page for {year} contains {totalPageCount} pages!");
-
-                IEnumerable<(CaseType, string)> list = new List<(CaseType, string)>();
-
-                for (int page = 0; page < totalPageCount; page++)
-                {
-                    try
-                    {
-                        var pageList = await GetCasesFromYear(year, page + 1);
-                        list = list.Concat(pageList);
-                    } 
-                    catch (Exception e)
-                    {
-                        Console.WriteLine($"Failed to parse year {year}, page {page}! {e.Message} \n {e.StackTrace}");
-                    }
-
-                    Console.WriteLine($"Page {page}");
-                }
+                var totalPageCount = await GetTotalPageCountForYear(year);
+                var casesList = await GetListOfCasesForYear(year, totalPageCount);
             }
 
             return;
+        }
+
+        private async Task<int> GetTotalPageCountForYear(int year)
+        {
+            var responseMessage = await client.GetAsync($"https://logting.fo/search/advancedSearch.gebs?d-16544-p=1&year={year}&subject=&parliamentMember=&menuChanged=%23parameters.menuChanged&lawNo=&committee.id=&caseType=-1");
+
+            if (!responseMessage.IsSuccessStatusCode)
+            {
+                throw new HttpRequestException(responseMessage.ReasonPhrase);
+            }
+
+            var content = await responseMessage.Content.ReadAsStringAsync();
+
+            var totalPageCount = logtingParserService.ParseGetPaginationCountFromAdvancedSearch(content);
+
+            Console.WriteLine($"StatusCode: {responseMessage.StatusCode}. Overview page for {year} contains {totalPageCount} pages!");
+
+            return totalPageCount;
+        }
+
+        private async Task<IEnumerable<(CaseType, string)>> GetListOfCasesForYear(int year, int totalPageCount)
+        {
+            IEnumerable<(CaseType, string)> list = new List<(CaseType, string)>();
+
+            for (int page = 0; page < totalPageCount; page++)
+            {
+                try
+                {
+                    var pageList = await GetCasesFromYear(year, page + 1);
+                    list = list.Concat(pageList);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Failed to parse year {year}, page {page}! {e.Message} \n {e.StackTrace}");
+                }
+
+                Console.WriteLine($"Page {page} processed!");
+            }
+
+            Console.WriteLine($"Total cases for year {year} is {list.Count()}!");
+
+            return list;
         }
 
         public IList<int> GetYears()
