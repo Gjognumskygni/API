@@ -8,9 +8,9 @@ namespace DAL
     {
         public Person GetPerson(int memberOfParlamentId);
 
-        public MemberRole GetRole(int memberOfParlamentId);
+        public MemberOfParliamentRole GetRole(int memberOfParlamentId);
 
-        public ICollection<MemberRole> GetRoles(int memberOfParlamentId);
+        public ICollection<MemberOfParliamentRole> GetRoles(int memberOfParlamentId);
 
         public Person GetAllParlamentMembersAtDate(DateTime dateTime);
     }

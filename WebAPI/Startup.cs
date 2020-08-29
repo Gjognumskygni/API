@@ -23,8 +23,8 @@ namespace WebAPI
         {
             services.AddHttpClient();
             services.AddControllers();
-            services.AddSingleton<ILogtingParserService, LogtingParserService>();
-            services.AddDbContext<TransparencyContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("connectionString")));
+            services.AddTransient<ILogtingParserService, LogtingParserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

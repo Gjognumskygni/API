@@ -3,24 +3,29 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Model
 {
-    public class TransparencyContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
-        public TransparencyContext(DbContextOptions<TransparencyContext> options)
+        public ApplicationDbContext()
+        {
+        }
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
 
         public DbSet<MemberOfParliament> MemberOfParliaments { get; set; }
-        
-        public DbSet<Person> Persons { get; set; }
 
+        public DbSet<Party> Parties { get; set; }
+
+        public DbSet<Term> Terms { get; set; }
+
+        public DbSet<Person> Persons { get; set; }
         
         public DbSet<Proposal> Proposals { get; set; }
 
         public DbSet<Proposer> Proposers { get; set; }
 
         public DbSet<Vote> Votes { get; set; }
-
-        public DbSet<LogtingVoterInstance> LogtingVoterInstances { get; set; }
     }
 }
