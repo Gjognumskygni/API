@@ -3,10 +3,26 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DAL.Migrations
 {
-    public partial class InitialDatabase : Migration
+    public partial class initialcreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Parties",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Letter = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    StartDate = table.Column<DateTime>(nullable: false),
+                    EndDate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Parties", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Persons",
                 columns: table => new
@@ -33,12 +49,28 @@ namespace DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Terms",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StartDate = table.Column<DateTime>(nullable: false),
+                    EndDate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Terms", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MemberOfParliaments",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PersonId = table.Column<int>(nullable: false),
+                    PartyId = table.Column<int>(nullable: false),
+                    TermId = table.Column<int>(nullable: false),
                     StartDate = table.Column<DateTime>(nullable: false),
                     EndDate = table.Column<DateTime>(nullable: false),
                     MemberOfParliamentRole = table.Column<int>(nullable: false)
@@ -47,9 +79,21 @@ namespace DAL.Migrations
                 {
                     table.PrimaryKey("PK_MemberOfParliaments", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_MemberOfParliaments_Parties_PartyId",
+                        column: x => x.PartyId,
+                        principalTable: "Parties",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_MemberOfParliaments_Persons_PersonId",
                         column: x => x.PersonId,
                         principalTable: "Persons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MemberOfParliaments_Terms_TermId",
+                        column: x => x.TermId,
+                        principalTable: "Terms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -108,9 +152,19 @@ namespace DAL.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_MemberOfParliaments_PartyId",
+                table: "MemberOfParliaments",
+                column: "PartyId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_MemberOfParliaments_PersonId",
                 table: "MemberOfParliaments",
                 column: "PersonId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MemberOfParliaments_TermId",
+                table: "MemberOfParliaments",
+                column: "TermId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Proposers_MemberOfParliamentId",
@@ -148,7 +202,13 @@ namespace DAL.Migrations
                 name: "Proposals");
 
             migrationBuilder.DropTable(
+                name: "Parties");
+
+            migrationBuilder.DropTable(
                 name: "Persons");
+
+            migrationBuilder.DropTable(
+                name: "Terms");
         }
     }
 }

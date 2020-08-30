@@ -8,9 +8,9 @@ namespace DAL
 {
     public class VotesService : IVotesService
     {
-        private readonly TransparencyContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public VotesService(TransparencyContext context)
+        public VotesService(ApplicationDbContext context)
         {
 
         }
