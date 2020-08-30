@@ -24,7 +24,7 @@ namespace AdminApp
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["ConnectionStrings.Transparency"]));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["ConnectionStrings.Gjognumskygni"]));
             services.AddSingleton<WeatherForecastService>();
         }
 
