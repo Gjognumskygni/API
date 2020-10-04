@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Domain
 {
@@ -13,5 +14,7 @@ namespace Domain
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
+
+        public ICollection<MemberOfParliament> MemberOfParliaments { get; }
     }
 }
