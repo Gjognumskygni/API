@@ -1,12 +1,10 @@
 {
   "dependencies": {
     "secrets1": {
-      "type": "secrets.user"
-    },
-    "mssql1": {
-      "type": "mssql.local",
-      "connectionId": "ConnectionStrings.Gjognumskygni",
-      "secretStore": "LocalSecretsFile"
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.KeyVault/vaults/GjognumskygniVault",
+      "type": "secrets.keyVault",
+      "connectionId": "VaultUri",
+      "secretStore": null
     }
   }
 }
