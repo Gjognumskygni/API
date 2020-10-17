@@ -1,7 +1,4 @@
 ﻿using DAL.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using ViewModel;
 
 namespace DAL
@@ -17,7 +14,7 @@ namespace DAL
 
         public void AddVoteResult(VoteResultViewModel voteResult)
         {
-            
+
         }
     }
 }
