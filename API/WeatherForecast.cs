@@ -1,6 +1,6 @@
 using System;
 
-namespace AdminApp.Data
+namespace API
 {
     public class WeatherForecast
     {
