@@ -1,0 +1,9 @@
+D:\git\gjognumskygni\API\Domain\bin\Debug\netcoreapp3.1\Domain.deps.json
+D:\git\gjognumskygni\API\Domain\bin\Debug\netcoreapp3.1\Domain.dll
+D:\git\gjognumskygni\API\Domain\bin\Debug\netcoreapp3.1\Domain.pdb
+D:\git\gjognumskygni\API\Domain\obj\Debug\netcoreapp3.1\Domain.csprojAssemblyReference.cache
+D:\git\gjognumskygni\API\Domain\obj\Debug\netcoreapp3.1\Domain.AssemblyInfoInputs.cache
+D:\git\gjognumskygni\API\Domain\obj\Debug\netcoreapp3.1\Domain.AssemblyInfo.cs
+D:\git\gjognumskygni\API\Domain\obj\Debug\netcoreapp3.1\Domain.csproj.CoreCompileInputs.cache
+D:\git\gjognumskygni\API\Domain\obj\Debug\netcoreapp3.1\Domain.dll
+D:\git\gjognumskygni\API\Domain\obj\Debug\netcoreapp3.1\Domain.pdb
