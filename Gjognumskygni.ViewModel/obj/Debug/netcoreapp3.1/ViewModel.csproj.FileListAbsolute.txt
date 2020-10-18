@@ -1,9 +1,0 @@
-D:\git\gjognumskygni\API\ViewModel\bin\Debug\netcoreapp3.1\ViewModel.deps.json
-D:\git\gjognumskygni\API\ViewModel\bin\Debug\netcoreapp3.1\ViewModel.dll
-D:\git\gjognumskygni\API\ViewModel\bin\Debug\netcoreapp3.1\ViewModel.pdb
-D:\git\gjognumskygni\API\ViewModel\obj\Debug\netcoreapp3.1\ViewModel.csprojAssemblyReference.cache
-D:\git\gjognumskygni\API\ViewModel\obj\Debug\netcoreapp3.1\ViewModel.AssemblyInfoInputs.cache
-D:\git\gjognumskygni\API\ViewModel\obj\Debug\netcoreapp3.1\ViewModel.AssemblyInfo.cs
-D:\git\gjognumskygni\API\ViewModel\obj\Debug\netcoreapp3.1\ViewModel.csproj.CoreCompileInputs.cache
-D:\git\gjognumskygni\API\ViewModel\obj\Debug\netcoreapp3.1\ViewModel.dll
-D:\git\gjognumskygni\API\ViewModel\obj\Debug\netcoreapp3.1\ViewModel.pdb

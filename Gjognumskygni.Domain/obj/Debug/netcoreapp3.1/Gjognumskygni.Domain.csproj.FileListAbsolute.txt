@@ -1,9 +1,0 @@
-D:\git\gjognumskygni\Gjognumskygni.API\Gjognumskygni.Domain\bin\Debug\netcoreapp3.1\Gjognumskygni.Domain.deps.json
-D:\git\gjognumskygni\Gjognumskygni.API\Gjognumskygni.Domain\bin\Debug\netcoreapp3.1\Gjognumskygni.Domain.dll
-D:\git\gjognumskygni\Gjognumskygni.API\Gjognumskygni.Domain\bin\Debug\netcoreapp3.1\Gjognumskygni.Domain.pdb
-D:\git\gjognumskygni\Gjognumskygni.API\Gjognumskygni.Domain\obj\Debug\netcoreapp3.1\Gjognumskygni.Domain.AssemblyInfoInputs.cache
-D:\git\gjognumskygni\Gjognumskygni.API\Gjognumskygni.Domain\obj\Debug\netcoreapp3.1\Gjognumskygni.Domain.AssemblyInfo.cs
-D:\git\gjognumskygni\Gjognumskygni.API\Gjognumskygni.Domain\obj\Debug\netcoreapp3.1\Gjognumskygni.Domain.csproj.CoreCompileInputs.cache
-D:\git\gjognumskygni\Gjognumskygni.API\Gjognumskygni.Domain\obj\Debug\netcoreapp3.1\Gjognumskygni.Domain.dll
-D:\git\gjognumskygni\Gjognumskygni.API\Gjognumskygni.Domain\obj\Debug\netcoreapp3.1\Gjognumskygni.Domain.pdb
-D:\git\gjognumskygni\Gjognumskygni.API\Gjognumskygni.Domain\obj\Debug\netcoreapp3.1\Gjognumskygni.Domain.csprojAssemblyReference.cache
