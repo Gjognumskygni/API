@@ -1,92 +1,108 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using ViewModel;
-using System.Linq;
+﻿using System;
 using System.Collections.Generic;
-using System;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using API.Model;
+using Domain;
 
 namespace API.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
     public class PartiesController : ControllerBase
     {
-        private readonly ILogger<PartiesController> _logger;
+        private readonly ApplicationDbContext _context;
 
-        private readonly IList<PartyViewModel> Parties;
-
-        public PartiesController(ILogger<PartiesController> logger)
+        public PartiesController(ApplicationDbContext context)
         {
-            _logger = logger;
-            Parties = new List<PartyViewModel>();
-            Parties.Add(new PartyViewModel
-            {
-                Id = 3,
-                Letter = "A",
-                Name = "Fólkaflokkurin",
-                StartDate = new DateTime(2015, 09, 01),
-                EndDate = null
-            });
-            Parties.Add(new PartyViewModel
-            {
-                Id = 4,
-                Letter = "B",
-                Name = "Sambandsflokkurin",
-                StartDate = new DateTime(2015, 09, 01),
-                EndDate = null
-            });
-            Parties.Add(new PartyViewModel
-            {
-                Id = 1,
-                Letter = "C",
-                Name = "Javnaðarflokkurin",
-                StartDate = new DateTime(2015, 09, 01),
-                EndDate = null
-            });
-            Parties.Add(new PartyViewModel
-            {
-                Id = 6,
-                Letter = "D",
-                Name = "Sjálvstýri",
-                StartDate = new DateTime(2015, 09, 01),
-                EndDate = null
-            });
-            Parties.Add(new PartyViewModel
-            {
-                Id = 2,
-                Letter = "E",
-                Name = "Tjóðveldi",
-                StartDate = new DateTime(2015, 09, 01),
-                EndDate = null
-            });
-            Parties.Add(new PartyViewModel
-            {
-                Id = 5,
-                Letter = "F",
-                Name = "Framsókn",
-                StartDate = new DateTime(2015, 09, 01),
-                EndDate = null
-            });
-            Parties.Add(new PartyViewModel
-            {
-                Id = 6,
-                Letter = "H",
-                Name = "Miðflokkurin",
-                StartDate = new DateTime(2015, 09, 01),
-                EndDate = null
-            });
+            _context = context;
         }
 
-        [Route("GetCurrentParties")]
-        public IList<PartyViewModel> GetCurrentParties()
+        // GET: api/Parties
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Party>>> GetParties()
         {
-            return Parties;
+            return await _context.Parties.ToListAsync();
         }
 
-        [Route("GetCurrentParty/{id}")]
-        public PartyViewModel GetCurrentParty(int id)
+        // GET: api/Parties/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Party>> GetParty(int id)
         {
-            return Parties.FirstOrDefault(x => x.Id == id);
+            var party = await _context.Parties.FindAsync(id);
+
+            if (party == null)
+            {
+                return NotFound();
+            }
+
+            return party;
+        }
+
+        // PUT: api/Parties/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutParty(int id, Party party)
+        {
+            if (id != party.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(party).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PartyExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        // POST: api/Parties
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public async Task<ActionResult<Party>> PostParty(Party party)
+        {
+            _context.Parties.Add(party);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetParty", new { id = party.Id }, party);
+        }
+
+        // DELETE: api/Parties/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteParty(int id)
+        {
+            var party = await _context.Parties.FindAsync(id);
+            if (party == null)
+            {
+                return NotFound();
+            }
+
+            _context.Parties.Remove(party);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        private bool PartyExists(int id)
+        {
+            return _context.Parties.Any(e => e.Id == id);
         }
     }
 }
