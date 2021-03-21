@@ -8,3 +8,5 @@ Navigate to the DAL directory and run the following command on Windows Powershel
 
 > dotnet ef migrations add *{Name the migration here}* -s ../API/API.csproj
 
+## Updating the Database
+> dotnet ef database update --project API

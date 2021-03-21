@@ -29,7 +29,7 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(("YvirlitContext")));
+            services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("YvirlitContext")));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
